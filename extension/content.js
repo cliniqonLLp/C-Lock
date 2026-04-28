@@ -1,4 +1,4 @@
-const API_BASE = "https://c-lock-1.onrender.com/";
+const API_BASE = "https://c-lock-1.onrender.com";
 
 let isFilling = false;
 let alreadyFilled = false;
