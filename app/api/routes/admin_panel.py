@@ -341,7 +341,7 @@ from app.db.models.user import User
 from app.core.security import hash_password
 from fastapi import APIRouter
 
-router = APIRouter()
+
 
 @router.post("/init-admin")
 def init_admin():
