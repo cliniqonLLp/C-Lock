@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Sarath V",
+    "email": "svadakkedath@cliniqon.com",
+    "password_hash": "$pbkdf2-sha256$29000$v9famzMGgLD2vlfKmTMGQA$hdq1tx/OF46UXPQMcxY6H1SP4wuly9XkZIDTSxUC7kA",
+    "role": "admin",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "name": "Achu",
+    "email": "ach@cliniqon.com",
+    "password_hash": "$2b$12$anotherhashedvalue",
+    "role": "user",
+    "is_active": true
+  }
+]

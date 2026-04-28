@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic-settings
+PySide6
+requests
+pyperclip
+cryptography
+passlib[bcrypt]

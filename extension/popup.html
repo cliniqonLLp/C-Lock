@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C-Lock</title>
+    <style>
+        body {
+            width: 300px;
+            font-family: Arial, sans-serif;
+            padding: 14px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 9px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .muted {
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h2>C-Lock</h2>
+
+    <div id="loginBox">
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+        <div id="error" class="error"></div>
+    </div>
+
+    <div id="sessionBox" style="display:none;">
+        <p>Logged in as:</p>
+        <strong id="userEmail"></strong>
+        <p class="muted">Session stays active while you use C-Lock.</p>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

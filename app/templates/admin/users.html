@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users - C-Lock Admin</title>
+</head>
+<body>
+    <h1>Users</h1>
+
+    <a href="/admin-panel">Back</a>
+
+    <h2>Create User</h2>
+
+    <form method="post" action="/admin-panel/users/create">
+        <input type="text" name="name" placeholder="Name" required>
+        <br><br>
+
+        <input type="email" name="email" placeholder="Email" required>
+        <br><br>
+
+        <input type="password" name="password" placeholder="Password" required>
+        <br><br>
+
+        <select name="role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Create User</button>
+    </form>
+
+    <h2>Existing Users</h2>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Active</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.is_active }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

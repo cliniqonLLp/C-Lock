@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audit Logs - C-Lock Admin</title>
+</head>
+<body>
+    <h1>Audit Logs</h1>
+
+    <a href="/admin-panel">Back</a>
+
+    <br><br>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Resource Type</th>
+            <th>Resource ID</th>
+            <th>Event Data</th>
+            <th>IP Address</th>
+            <th>Created At</th>
+        </tr>
+
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.id }}</td>
+            <td>{{ log.user_id }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.resource_type }}</td>
+            <td>{{ log.resource_id }}</td>
+            <td>{{ log.event_data }}</td>
+            <td>{{ log.ip_address }}</td>
+            <td>{{ log.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

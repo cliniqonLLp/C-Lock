@@ -1,0 +1,17 @@
+[
+  {
+    "user_id": 1,
+    "vault_id": 101,
+    "permission_type": "use"
+  },
+  {
+    "user_id": 1,
+    "vault_id": 102,
+    "permission_type": "owner"
+  },
+  {
+    "user_id": 2,
+    "vault_id": 101,
+    "permission_type": "use"
+  }
+]

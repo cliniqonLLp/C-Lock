@@ -1,0 +1,22 @@
+[
+  {
+    "id": 101,
+    "account_name": "Clinix Shared Login",
+    "login_username": "shared_support@cliniqon.com",
+    "login_password_encrypted": "gAAAAABp6GdiYi-yo09faGRjtMoACz044FXFKJzzHn1fFUM3og99fc6IyGDbhsohVWMqPFLrHGMl2QIbFHc5olYs5-TM-_QIEQ==",
+    "allowed_domains": ["clinix.cliniqon.com"],
+    "owner_type": "shared",
+    "owner_user_id": null,
+    "status": "active"
+  },
+  {
+    "id": 102,
+    "account_name": "Sarath Clinix Login",
+    "login_username": "ach@cliniqon.com",
+    "login_password_encrypted": "gAAAAABp6GdiYi-yo09faGRjtMoACz044FXFKJzzHn1fFUM3og99fc6IyGDbhsohVWMqPFLrHGMl2QIbFHc5olYs5-TM-_QIEQ==",
+    "allowed_domains": ["clinix.cliniqon.com", "peoplepro.cliniqon.com","thewizard.pythonanywhere.com"],
+    "owner_type": "personal",
+    "owner_user_id": 1,
+    "status": "active"
+  }
+]
