@@ -3,13 +3,14 @@
   "name": "C-Lock Autofill",
   "version": "1.0",
   "permissions": ["storage", "activeTab", "scripting"],
-  "host_permissions": [
-    "http://127.0.0.1:8765/*",
-    "https://in.pinterest.com/*",
-    "https://clinix.cliniqon.com/*",
-    "https://peoplepro.cliniqon.com/*",
-    "https://thewizard.pythonanywhere.com/*"
-  ],
+"host_permissions": [
+  "http://127.0.0.1:8765/*",
+  "https://c-lock-1.onrender.com/*",
+  "https://in.pinterest.com/*",
+  "https://clinix.cliniqon.com/*",
+  "https://peoplepro.cliniqon.com/*",
+  "https://thewizard.pythonanywhere.com/*"
+],
   "action": {
     "default_popup": "popup.html",
     "default_title": "C-Lock"

@@ -1,4 +1,4 @@
-const API_BASE = "https://c-lock-1.onrender.com";
+const API_BASE = "https://c-lock-1.onrender.com/api";
 
 let isFilling = false;
 let alreadyFilled = false;
@@ -441,7 +441,7 @@ async function tryFill() {
 
         alreadyFilled = true;
         console.log("C-Lock: fill complete");
-    } catch (err) {l
+    } catch (err) {
         console.error("C-Lock error:", err);
     } finally {
         isFilling = false;
