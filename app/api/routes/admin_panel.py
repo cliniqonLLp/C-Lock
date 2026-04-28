@@ -335,3 +335,34 @@ def audit_logs_page(
             "logs": logs
         }
     )
+
+from app.db.session import SessionLocal
+from app.db.models.user import User
+from app.core.security import hash_password
+from fastapi import APIRouter
+
+router = APIRouter()
+
+@router.post("/init-admin")
+def init_admin():
+    db = SessionLocal()
+
+    existing = db.query(User).filter(User.email == "admin@cliniqon.com").first()
+    if existing:
+        return {"message": "Admin already exists"}
+
+    admin = User(
+        name="Admin",
+        email="admin@cliniqon.com",
+        password_hash=hash_password("admin123"),
+        role="admin",
+        is_active=True
+    )
+
+    db.add(admin)
+    db.commit()
+    db.refresh(admin)
+
+    db.close()
+
+    return {"message": "Admin created"}

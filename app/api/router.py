@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.api.routes import auth, admin_users, admin_vault, vault, fill,admin_panel
-
+from app.api.routes import admin_panel
 api_router = APIRouter()
 from app.api.routes import vault_v2
 
@@ -11,3 +11,6 @@ api_router.include_router(admin_vault.router, prefix="/admin", tags=["Admin Vaul
 api_router.include_router(vault.router, prefix="/vault", tags=["Vault"])
 api_router.include_router(fill.router, prefix="/fill", tags=["Fill"])
 api_router.include_router(admin_panel.router, tags=["Admin Panel"])
+
+
+api_router.include_router(admin_panel.router)
