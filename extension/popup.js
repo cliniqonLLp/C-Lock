@@ -1,4 +1,4 @@
-const API_BASE = "https://c-lock-1.onrender.com/";
+const API_BASE = "https://c-lock-1.onrender.com";
 
 const loginBox = document.getElementById("loginBox");
 const sessionBox = document.getElementById("sessionBox");
