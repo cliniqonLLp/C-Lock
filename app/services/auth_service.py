@@ -22,6 +22,21 @@ def login_user(db: Session, email: str, password: str):
     if not verify_password(password, user.password_hash):
         return {"success": False, "message": "Invalid password"}
 
+    active_session = (
+        db.query(SessionToken)
+        .filter(
+            SessionToken.user_id == user.id,
+            SessionToken.is_active == True
+        )
+        .first()
+    )
+
+    if active_session:
+        return {
+            "success": False,
+            "message": "User already logged in on another system"
+        }
+
     now = datetime.utcnow()
 
     access_token = generate_token()
