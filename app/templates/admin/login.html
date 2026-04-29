@@ -2,22 +2,172 @@
 <html>
 <head>
     <title>Admin Login - C-Lock</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(130, 210, 255, 0.45), transparent 24%),
+                linear-gradient(135deg, #eef8ff, #cfe9f8);
+            overflow: hidden;
+        }
+
+        .water {
+            position: absolute;
+            width: 560px;
+            height: 230px;
+            border-radius: 48% 52% 44% 56%;
+            background:
+                radial-gradient(circle at 28% 18%, rgba(255,255,255,0.9), transparent 13%),
+                linear-gradient(135deg, rgba(170, 230, 255, 0.9), rgba(65, 150, 205, 0.55));
+            filter: drop-shadow(0 18px 26px rgba(45, 100, 130, 0.28));
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .water::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: inherit;
+            border-top: 5px solid rgba(255,255,255,0.75);
+            opacity: 0.75;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 25%, white, rgba(92, 180, 220, 0.75) 45%, rgba(20, 90, 140, 0.35));
+            box-shadow: 0 8px 18px rgba(40, 110, 150, 0.24);
+            animation: bob 4s ease-in-out infinite;
+        }
+
+        .b1 { width: 34px; height: 34px; top: 80px; left: 24%; }
+        .b2 { width: 18px; height: 18px; top: 125px; left: 62%; animation-delay: .4s; }
+        .b3 { width: 28px; height: 28px; top: 68px; right: 27%; animation-delay: .8s; }
+        .b4 { width: 14px; height: 14px; bottom: 125px; left: 32%; animation-delay: 1s; }
+
+        .card {
+            position: relative;
+            z-index: 2;
+            width: 520px;
+            padding: 34px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 22px;
+            color: #21465a;
+            letter-spacing: 0.5px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 999px;
+            background: rgba(245, 252, 255, 0.9);
+            border: 3px solid #8aa5b8;
+            box-shadow:
+                0 14px 24px rgba(60, 100, 125, 0.22),
+                inset 0 2px 8px rgba(255,255,255,0.9);
+            margin-bottom: 16px;
+        }
+
+        .fields {
+            flex: 1;
+            display: grid;
+            gap: 8px;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 8px 12px;
+            font-size: 16px;
+            color: #1b3442;
+        }
+
+        input::placeholder {
+            color: #647b88;
+        }
+
+        .divider {
+            width: 1px;
+            height: 58px;
+            background: #9cb0bb;
+        }
+
+        button {
+            width: 54px;
+            height: 54px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: #eaf7ff;
+            color: #1d3545;
+            font-size: 24px;
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.9);
+            transition: transform .2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+        .error {
+            color: #d72638;
+            font-size: 14px;
+            margin-top: 14px;
+            font-weight: 700;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.02); }
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Admin Login</h1>
+    <div class="water"></div>
 
-    <form method="post" action="/admin-login">
-        <input type="email" name="email" placeholder="Email" required>
-        <br><br>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
 
-        <input type="password" name="password" placeholder="Password" required>
-        <br><br>
+    <div class="card">
+        <h1>C-Lock Admin</h1>
 
-        <button type="submit">Login</button>
-    </form>
+        <form method="post" action="/admin-login" class="search-box">
+            <div class="fields">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
 
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
+            <div class="divider"></div>
+
+            <button type="submit">🔍</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>
