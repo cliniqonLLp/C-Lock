@@ -402,14 +402,43 @@ async function tryFill() {
     try {
         const domain = window.location.hostname;
         console.log("C-Lock domain:", domain);
+        const cacheKey = "clock_cache_" + domain;
+        const cached = await chrome.storage.local.get([cacheKey]);
+
+        if (cached[cacheKey]) {
+            console.log("C-Lock: using cached matches");
+
+            const selectedCredential = await chooseCredential(cached[cacheKey]);
+
+            if (selectedCredential) {
+                const fillData = await requestFillToken(selectedCredential, domain);
+                const credentialData = await redeemFillToken(fillData.fill_token);
+
+                if (credentialData.success) {
+                    setReactLikeValue(usernameField, credentialData.username);
+                    setReactLikeValue(passwordField, credentialData.password);
+                    alreadyFilled = true;
+                    return;
+                }
+            }
+        }
 
         const matchData = await getVaultMatches(domain);
         console.log("C-Lock match response:", matchData);
 
         if (!matchData.matches || matchData.matches.length === 0) {
-            console.log("C-Lock: no matches");
+    
+                    console.log("C-Lock: no matches");
             return;
         }
+        await chrome.storage.local.set({
+            [cacheKey]: matchData.matches.map(m => ({
+                credential_type: m.credential_type,
+                credential_id: m.credential_id,
+                label: m.label,
+                username: m.username
+            }))
+        });
 
         const selectedCredential = await chooseCredential(matchData.matches);
 
@@ -447,6 +476,6 @@ async function tryFill() {
         isFilling = false;
     }
 }
-
-setTimeout(tryFill, 1000);
-setTimeout(tryFill, 2500);
+setTimeout(tryFill, 100);
+setTimeout(tryFill, 800);
+setTimeout(tryFill, 1500);

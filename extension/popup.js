@@ -130,20 +130,15 @@ async function login() {
 async function logout() {
     const session = await getStoredSession();
 
-    if (session.refresh_token) {
-        await fetch(`${API_BASE}/auth/logout`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                refresh_token: session.refresh_token
-            })
-        });
-    }
+    await fetch(`${API_BASE}/auth/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            refresh_token: session.refresh_token
+        })
+    });
 
-    await clearStoredSession();
-    showLogin();
+    await chrome.storage.local.clear(); 
 }
 
 function showLogin() {
