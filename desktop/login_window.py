@@ -31,7 +31,7 @@ class LoginWindow(QWidget):
     def handle_login(self):
         try:
             response = requests.post(
-                "http://127.0.0.1:8765/auth/login",
+                "https://c-lock-1.onrender.com/auth/login",
                 json={
                     "email": self.email.text(),
                     "password": self.password.text()

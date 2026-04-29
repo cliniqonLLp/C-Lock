@@ -127,18 +127,40 @@ async function login() {
     showSession(data.email);
 }
 
+// async function logout() {
+//     const session = await getStoredSession();
+
+//     await fetch(`${API_BASE}/auth/logout`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//             refresh_token: session.refresh_token
+//         })
+//     });
+
+//     await chrome.storage.local.clear(); 
+// }
 async function logout() {
     const session = await getStoredSession();
 
-    await fetch(`${API_BASE}/auth/logout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            refresh_token: session.refresh_token
-        })
-    });
+    if (session.refresh_token) {
+        await fetch(`${API_BASE}/auth/logout`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                refresh_token: session.refresh_token
+            })
+        });
+    }
 
-    await chrome.storage.local.clear(); 
+    await chrome.storage.local.clear();
+
+    loginBox.style.display = "block";
+    sessionBox.style.display = "none";
+    userEmail.textContent = "";
+    errorBox.textContent = "";
 }
 
 function showLogin() {
