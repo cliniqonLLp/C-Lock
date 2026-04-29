@@ -9,26 +9,22 @@
 
         body {
             margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            font-family: Arial, sans-serif;
-            background:
-                radial-gradient(circle at 25% 20%, #8fb3e8, transparent 28%),
-                linear-gradient(135deg, #24365f, #9db9e7);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 25% 20%, #041442, transparent 28%), linear-gradient(135deg, #3564bd, #24418a);
         }
 
         .login-card {
-            width: 390px;
-            padding: 28px;
-            border-radius: 34px;
-            background: rgba(180, 205, 245, 0.32);
-            border: 2px solid rgba(230, 245, 255, 0.65);
-            box-shadow:
-                0 25px 50px rgba(10, 25, 60, 0.35),
-                inset 0 0 30px rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(18px);
-            animation: popIn .45s ease;
+                width: 390px;
+    padding: 28px;
+    border-radius: 34px;
+    background: rgba(180, 205, 245, 0.32);
+    border: 2px solid rgb(249 249 249 / 65%);
+    box-shadow: 0 25px 50px rgb(209 209 209 / 35%), inset 0 0 30px rgb(255 255 255 / 35%);
+    backdrop-filter: blur(18px);
+    animation: popIn .45s ease;
         }
 
         @keyframes popIn {
@@ -100,7 +96,7 @@
             width: 100%;
             margin-top: 8px;
             padding: 16px;
-            border: none;
+            border: solid 1px white;
             border-radius: 24px;
             cursor: pointer;
             font-size: 17px;
@@ -154,7 +150,7 @@
 </head>
 <body>
     <div class="login-card">
-        <div class="logo-box">🔐</div>
+        <div class="logo-box"></div>
 
         <h1>C-Lock Admin</h1>
         <div class="sub">Secure control panel access</div>
@@ -171,12 +167,7 @@
             <button type="submit">LOGIN</button>
         </form>
 
-        <div class="quick-icons">
-            <div class="icon">✈</div>
-            <div class="icon dark">⇅</div>
-            <div class="icon dark">⌁</div>
-            <div class="icon">⌘</div>
-        </div>
+        
 
         {% if error %}
             <p class="error">{{ error }}</p>
