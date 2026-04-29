@@ -2,38 +2,169 @@
 <html>
 <head>
     <title>Audit Logs - C-Lock Admin</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #e8dfd4;
+            padding: 28px;
+            color: #171717;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin: 0;
+        }
+
+        .back {
+            text-decoration: none;
+            background: #cde4db;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            color: #1c403b;
+            box-shadow: 8px 10px 20px rgba(80, 70, 60, 0.14);
+        }
+
+        .card {
+            border-radius: 28px;
+            padding: 24px;
+            background: rgba(255, 250, 242, 0.78);
+            box-shadow:
+                14px 18px 35px rgba(90, 70, 45, 0.18),
+                inset 0 0 25px rgba(255,255,255,0.75);
+        }
+
+        .table-wrap {
+            overflow: auto;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.55);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px;
+            background: rgba(205, 228, 219, 0.85);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(120,110,100,0.15);
+            font-size: 13px;
+            color: #3b332d;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #dcebe7;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .action {
+            background: #b5d9d4;
+            color: #1c403b;
+        }
+
+        .event {
+            font-family: monospace;
+            font-size: 11px;
+            color: #5a5148;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .time {
+            color: #6e6258;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Audit Logs</h1>
 
-    <a href="/admin-panel">Back</a>
+<div class="page">
 
-    <br><br>
+    <div class="top">
+        <h1>Audit Logs</h1>
+        <a class="back" href="/admin-panel">← Back</a>
+    </div>
 
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>ID</th>
-            <th>User ID</th>
-            <th>Action</th>
-            <th>Resource Type</th>
-            <th>Resource ID</th>
-            <th>Event Data</th>
-            <th>IP Address</th>
-            <th>Created At</th>
-        </tr>
+    <div class="card">
 
-        {% for log in logs %}
-        <tr>
-            <td>{{ log.id }}</td>
-            <td>{{ log.user_id }}</td>
-            <td>{{ log.action }}</td>
-            <td>{{ log.resource_type }}</td>
-            <td>{{ log.resource_id }}</td>
-            <td>{{ log.event_data }}</td>
-            <td>{{ log.ip_address }}</td>
-            <td>{{ log.created_at }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Resource</th>
+                    <th>Data</th>
+                    <th>IP</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.id }}</td>
+                    <td>{{ log.user_id }}</td>
+
+                    <td>
+                        <span class="tag action">{{ log.action }}</span>
+                    </td>
+
+                    <td>
+                        {{ log.resource_type }} #{{ log.resource_id }}
+                    </td>
+
+                    <td class="event">
+                        {{ log.event_data }}
+                    </td>
+
+                    <td>{{ log.ip_address }}</td>
+
+                    <td class="time">
+                        {{ log.created_at }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

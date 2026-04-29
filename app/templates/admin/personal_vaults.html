@@ -2,36 +2,154 @@
 <html>
 <head>
     <title>Personal Vaults - C-Lock Admin</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #e8dfd4;
+            padding: 28px;
+            color: #171717;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin: 0;
+        }
+
+        .back {
+            text-decoration: none;
+            background: #cde4db;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            color: #1c403b;
+            box-shadow: 8px 10px 20px rgba(80, 70, 60, 0.14);
+        }
+
+        .card {
+            position: relative;
+            border-radius: 28px;
+            padding: 30px;
+            overflow: hidden;
+            background: rgba(255, 250, 242, 0.78);
+            box-shadow:
+                14px 18px 35px rgba(90, 70, 45, 0.18),
+                inset 0 0 25px rgba(255,255,255,0.75);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            right: -60px;
+            bottom: -80px;
+            width: 240px;
+            height: 180px;
+            background: linear-gradient(135deg, #cde4db, #eef8f1);
+            border-radius: 55% 45% 0 0;
+            transform: rotate(-10deg);
+        }
+
+        .card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border: none;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.82);
+            box-shadow:
+                inset 0 0 14px rgba(255,255,255,0.8),
+                6px 8px 18px rgba(90, 70, 45, 0.12);
+            outline: none;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 20px;
+            background: #b5d9d4;
+            color: #1c403b;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 8px 10px 22px rgba(80, 70, 60, 0.16);
+            transition: 0.2s;
+            font-size: 15px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #a7d0ca;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Personal Vaults</h1>
 
-    <a href="/admin-panel">Back</a>
+<div class="page">
 
-    <h2>Add Personal Credential to User</h2>
+    <div class="top">
+        <h1>Personal Vaults</h1>
+        <a class="back" href="/admin-panel">← Back</a>
+    </div>
 
-    <form method="post" action="/admin-panel/personal-vaults/add">
-        <label>User</label><br>
-        <select name="user_id" required>
-            {% for user in users %}
-                <option value="{{ user.id }}">{{ user.id }} - {{ user.email }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
+    <div class="card">
+        <h2>Add Personal Credential</h2>
 
-        <input type="text" name="label" placeholder="Label e.g. Pinterest" required>
-        <br><br>
+        <form method="post" action="/admin-panel/personal-vaults/add">
 
-        <input type="text" name="domains" placeholder="Domains comma separated e.g. in.pinterest.com,pinterest.com" required>
-        <br><br>
+            <label>User</label>
+            <select name="user_id" required>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.email }}</option>
+                {% endfor %}
+            </select>
 
-        <input type="text" name="username" placeholder="Login username" required>
-        <br><br>
+            <input type="text" name="label" placeholder="Label (e.g. Pinterest)" required>
 
-        <input type="password" name="password" placeholder="Login password" required>
-        <br><br>
+            <input type="text" name="domains" placeholder="Domains (comma separated)" required>
 
-        <button type="submit">Add Credential</button>
-    </form>
+            <input type="text" name="username" placeholder="Username" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button>Add Credential</button>
+
+        </form>
+    </div>
+
+</div>
+
 </body>
 </html>
