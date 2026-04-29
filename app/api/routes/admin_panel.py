@@ -360,3 +360,21 @@ def reset_admin():
     db.close()
 
     return {"message": "Admin reset success"}
+
+from app.db.models.session_token import SessionToken
+
+@router.get("/force-logout-user/{email}")
+def force_logout_user(email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == email).first()
+
+    if not user:
+        return {"success": False, "message": "User not found"}
+
+    db.query(SessionToken).filter(
+        SessionToken.user_id == user.id,
+        SessionToken.is_active == True
+    ).update({"is_active": False})
+
+    db.commit()
+
+    return {"success": True, "message": "User logged out from all systems"}
