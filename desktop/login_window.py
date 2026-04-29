@@ -43,7 +43,7 @@ class LoginWindow(QWidget):
             if data.get("success"):
                 QMessageBox.information(self, "Success", data["message"])
                 self.main_window = MainWindow(
-                    session_token=data["session_token"],
+                    session_token=data["access_token"],
                     user_name=data["name"]
                 )
                 self.main_window.show()
