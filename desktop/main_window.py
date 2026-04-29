@@ -4,9 +4,10 @@ import pyperclip
 
 
 class MainWindow(QWidget):
-    def __init__(self, session_token, user_name):
+    def __init__(self, session_token, refresh_token, user_name):
         super().__init__()
         self.session_token = session_token
+        self.refresh_token = refresh_token
         self.user_name = user_name
 
         self.setWindowTitle("C-Lock Vault")
@@ -18,7 +19,22 @@ class MainWindow(QWidget):
         title = QLabel(f"Welcome, {self.user_name}")
         self.layout.addWidget(title)
 
+        logout_btn = QPushButton("Logout")
+        logout_btn.clicked.connect(self.logout)
+        self.layout.addWidget(logout_btn)
+
         self.load_vault_data()
+
+    def logout(self):
+        try:
+            requests.post(
+                "http://127.0.0.1:8765/auth/logout",
+                json={
+                    "refresh_token": self.refresh_token
+                }
+            )
+        finally:
+            self.close()
 
     def load_vault_data(self):
         try:

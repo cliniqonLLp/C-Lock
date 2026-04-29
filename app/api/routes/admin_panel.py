@@ -343,26 +343,20 @@ from fastapi import APIRouter
 
 
 
-@router.post("/init-admin")
-def init_admin():
+@router.get("/reset-admin")
+def reset_admin():
     db = SessionLocal()
 
-    existing = db.query(User).filter(User.email == "admin@cliniqon.com").first()
-    if existing:
-        return {"message": "Admin already exists"}
+    admin = db.query(User).filter(User.email == "admin@cliniqon.com").first()
 
-    admin = User(
-        name="Admin",
-        email="admin@cliniqon.com",
-        password_hash=hash_password("admin123"),
-        role="admin",
-        is_active=True
-    )
+    if not admin:
+        return {"error": "Admin not found"}
 
-    db.add(admin)
+    admin.password_hash = hash_password("admin123")
+    admin.is_active = True
+    admin.role = "admin"
+
     db.commit()
-    db.refresh(admin)
-
     db.close()
 
-    return {"message": "Admin created"}
+    return {"message": "Admin reset success"}
