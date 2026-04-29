@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>C-Lock Admin</title>
@@ -12,5 +12,201 @@
         <li><a href="/admin-panel/shared-credentials">Shared Credentials</a></li>
         <li><a href="/admin-panel/audit-logs">Audit Logs</a></li>
     </ul>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C-Lock Admin Panel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #e8dfd4;
+            color: #171717;
+            padding: 28px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 22px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: rgba(255, 250, 242, 0.72);
+            box-shadow:
+                14px 18px 35px rgba(90, 70, 45, 0.18),
+                inset 0 0 25px rgba(255,255,255,0.7);
+            padding: 28px;
+            min-height: 230px;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: auto -30px -70px -30px;
+            height: 170px;
+            background: linear-gradient(135deg, #cde4db, #eef8f1);
+            border-radius: 60% 40% 0 0;
+            transform: rotate(-5deg);
+            z-index: 0;
+        }
+
+        .card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            min-height: 330px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            width: 70%;
+            color: #6e6258;
+            line-height: 1.5;
+        }
+
+        .brand {
+            font-weight: 800;
+            margin-bottom: 34px;
+            font-size: 18px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .action {
+            text-decoration: none;
+            color: #161616;
+            border-radius: 22px;
+            padding: 22px;
+            background: rgba(255,255,255,0.72);
+            box-shadow:
+                8px 10px 22px rgba(80, 70, 60, 0.15),
+                inset 0 0 18px rgba(255,255,255,0.75);
+            transition: 0.25s ease;
+            min-height: 150px;
+        }
+
+        .action:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: #cdeee8;
+            margin-bottom: 18px;
+            font-size: 22px;
+        }
+
+        .action h3 {
+            margin: 0 0 8px;
+        }
+
+        .action p {
+            margin: 0;
+            color: #7a7067;
+            font-size: 13px;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        .pill {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: #b5d9d4;
+            color: #1c403b;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .blob {
+            position: absolute;
+            right: -40px;
+            top: -30px;
+            width: 190px;
+            height: 190px;
+            background: #cde5ee;
+            border-radius: 54% 46% 48% 52%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+
+        <div class="card hero">
+            <div class="blob"></div>
+            <div class="brand">C-Lock</div>
+            <h1>Dashboard</h1>
+            <p>
+                Manage users, personal vaults, shared credentials,
+                assignments, and audit logs from your secure admin panel.
+            </p>
+            <span class="pill">Admin Control Panel</span>
+        </div>
+
+        <div class="card">
+            <h2>Quick Status</h2>
+            <p style="color:#6e6258;">Secure credential management is active.</p>
+            <span class="pill">System Online</span>
+        </div>
+
+        <div class="actions wide">
+            <a class="action" href="/admin-panel/users">
+                <div class="icon">👤</div>
+                <h3>Users</h3>
+                <p>Create and manage C-Lock users.</p>
+            </a>
+
+            <a class="action" href="/admin-panel/personal-vaults">
+                <div class="icon">🔐</div>
+                <h3>Personal Vaults</h3>
+                <p>Add credentials for specific users.</p>
+            </a>
+
+            <a class="action" href="/admin-panel/shared-credentials">
+                <div class="icon">🤝</div>
+                <h3>Shared Credentials</h3>
+                <p>Create shared credentials and assign access.</p>
+            </a>
+
+            <a class="action" href="/admin-panel/audit-logs">
+                <div class="icon">📋</div>
+                <h3>Audit Logs</h3>
+                <p>Review admin and credential activity.</p>
+            </a>
+        </div>
+
+    </div>
 </body>
 </html>
