@@ -2,53 +2,232 @@
 <html>
 <head>
     <title>Users - C-Lock Admin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #e8dfd4;
+            color: #171717;
+            padding: 28px;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin: 0;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #1d403b;
+            background: #cde4db;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: 8px 10px 20px rgba(80, 70, 60, 0.14);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 22px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: rgba(255, 250, 242, 0.78);
+            box-shadow:
+                14px 18px 35px rgba(90, 70, 45, 0.18),
+                inset 0 0 25px rgba(255,255,255,0.75);
+            padding: 28px;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            right: -60px;
+            bottom: -80px;
+            width: 230px;
+            height: 180px;
+            background: linear-gradient(135deg, #cde4db, #eef8f1);
+            border-radius: 55% 45% 0 0;
+            transform: rotate(-12deg);
+            z-index: 0;
+        }
+
+        .card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border: none;
+            outline: none;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.82);
+            box-shadow:
+                inset 0 0 14px rgba(255,255,255,0.8),
+                6px 8px 18px rgba(90, 70, 45, 0.12);
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 20px;
+            background: #b5d9d4;
+            color: #1c403b;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 15px;
+            box-shadow: 8px 10px 22px rgba(80, 70, 60, 0.16);
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #a7d0ca;
+        }
+
+        .table-wrap {
+            overflow: hidden;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.55);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            position: relative;
+            z-index: 1;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            background: rgba(205, 228, 219, 0.85);
+            color: #1c403b;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 15px 16px;
+            border-bottom: 1px solid rgba(120, 110, 100, 0.16);
+            color: #3b332d;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .role {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #dcebe7;
+            color: #1c403b;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .active {
+            color: #1c7c54;
+            font-weight: 800;
+        }
+
+        .inactive {
+            color: #b33a3a;
+            font-weight: 800;
+        }
+    </style>
 </head>
 <body>
-    <h1>Users</h1>
+    <div class="page">
+        <div class="top">
+            <h1>Users</h1>
+            <a class="back" href="/admin-panel">← Back</a>
+        </div>
 
-    <a href="/admin-panel">Back</a>
+        <div class="grid">
+            <div class="card">
+                <h2>Create User</h2>
 
-    <h2>Create User</h2>
+                <form method="post" action="/admin-panel/users/create">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
 
-    <form method="post" action="/admin-panel/users/create">
-        <input type="text" name="name" placeholder="Name" required>
-        <br><br>
+                    <select name="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
 
-        <input type="email" name="email" placeholder="Email" required>
-        <br><br>
+                    <button type="submit">Create User</button>
+                </form>
+            </div>
 
-        <input type="password" name="password" placeholder="Password" required>
-        <br><br>
+            <div class="card">
+                <h2>Existing Users</h2>
 
-        <select name="role">
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-        </select>
-        <br><br>
+                <div class="table-wrap">
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Active</th>
+                        </tr>
 
-        <button type="submit">Create User</button>
-    </form>
-
-    <h2>Existing Users</h2>
-
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Active</th>
-        </tr>
-
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.is_active }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td><span class="role">{{ user.role }}</span></td>
+                            <td>
+                                {% if user.is_active %}
+                                    <span class="active">Active</span>
+                                {% else %}
+                                    <span class="inactive">Inactive</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
